@@ -26,6 +26,7 @@ ENV = os.environ.get("ENV", False)
 
 from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
+import asyncio
 
 import pylast
 from pySmartDL import SmartDL
@@ -150,20 +151,6 @@ for binary, path in binaries.items():
     downloader = SmartDL(binary, path, progress_bar=False)
     downloader.start()
     os.chmod(path, 0o755)
-
-if not BOTLOG_CHATID:
-    LOGS.info(
-    "You must set up the BOTLOG_CHATID variable in the config.env or environment variables, "
-    "many critical features depend on it. KTHXBye.")
-    return
-
-if BOTLOG_CHATID is not None:
-    entity = await bot.get_entity(BOTLOG_CHATID)
-    if entity.default_banned_rights.send_messages:
-        LOGS.info(
-            "Your account doesn't have rights to send messages to BOTLOG_CHATID "
-            "group. Check if you typed the Chat ID correctly.")
-        quit(1)
 
 # Global Variables
 COUNT_MSG = 0
