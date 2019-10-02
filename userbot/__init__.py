@@ -151,13 +151,13 @@ for binary, path in binaries.items():
     downloader.start()
     os.chmod(path, 0o755)
 
-async def check_botlog_chatid():
-    if not BOTLOG_CHATID:
-        LOGS.info(
-        "You must set up the BOTLOG_CHATID variable in the config.env or environment variables, "
-        "many critical features depend on it. KTHXBye.")
-        return
+if not BOTLOG_CHATID:
+    LOGS.info(
+    "You must set up the BOTLOG_CHATID variable in the config.env or environment variables, "
+    "many critical features depend on it. KTHXBye.")
+    return
 
+if BOTLOG_CHATID is not None:
     entity = await bot.get_entity(BOTLOG_CHATID)
     if entity.default_banned_rights.send_messages:
         LOGS.info(
