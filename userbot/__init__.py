@@ -165,7 +165,7 @@ async def check_botlog_chatid():
             "group. Check if you typed the Chat ID correctly.")
         quit(1)
 
-check_botlog_chatid()
+await check_botlog_chatid()
 
 # Global Variables
 COUNT_MSG = 0
