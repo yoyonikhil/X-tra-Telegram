@@ -135,6 +135,6 @@ def generate_change_log(git_repo, diff_marker):
         out_put_str += f"•[{repo_change.committed_datetime.strftime(d_form)}]: {repo_change.summary} <{repo_change.author}>\n"
     return out_put_str
 
-async def restart(client, message):
-    await client.restart()
+async def restart(bot, message):
+    await bot.restart()
     await message.edit("restarted! do `.alive` to check if I am online?") 
