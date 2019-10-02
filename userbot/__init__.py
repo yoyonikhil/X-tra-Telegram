@@ -56,7 +56,11 @@ if bool(ENV):
         quit(1)
 
     # Logging channel/group configuration.
-    BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", None))
+    BOTLOG_CHATID = os.environ.get("BOTLOG_CHATID", None)
+    try:
+        BOTLOG_CHATID = int(BOTLOG_CHATID)
+    except:
+        pass
 
     # Userbot logging feature switch.
     BOTLOG = sb(os.environ.get("BOTLOG", "False"))
