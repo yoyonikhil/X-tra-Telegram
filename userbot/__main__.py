@@ -5,10 +5,10 @@ from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 import os
 from telethon import TelegramClient
 from var import Var
-from userbot.utils import command, load_module
-from userbot import LOAD_PLUG
+from userbot.utils import load_module
+from userbot import LOAD_PLUG, BOTLOG_CHATID, LOGS
 from pathlib import Path
-import userbot.utils
+import asyncio
 
 async def add_bot(bot_token):
     await bot.start(bot_token)
@@ -31,6 +31,30 @@ else:
             api_hash=Var.API_HASH
         ).start(bot_token=Var.TG_BOT_TOKEN_BF_HER)
     bot.loop.run_until_complete(add_bot(Var.TG_BOT_USER_NAME_BF_HER))
+
+async def botlog():
+    if not BOTLOG_CHATID:
+        LOGS.info(
+        "You must set up the BOTLOG_CHATID variable in the config.env or environment variables, "
+        "many critical features depend on it. KTHXBye.")
+        return
+
+    if BOTLOG_CHATID is not None:
+        entity = await bot.get_entity(BOTLOG_CHATID)
+        if entity.default_banned_rights.send_messages:
+            LOGS.info(
+                "Your account doesn't have rights to send messages to BOTLOG_CHATID "
+                "group. Check if you typed the Chat ID correctly.")
+            quit(1)
+
+with bot:
+    try:
+        bot.loop.run_until_complete(check_botlog_chatid())
+    except:
+        LOGS.info(
+            "BOTLOG_CHATID environment variable isn't a "
+            "valid entity. Check your environment variables/config.env file.")
+        quit(1)
 
 import glob
 path = 'userbot/plugins/*.py'
