@@ -132,6 +132,7 @@ if bool(ENV):
                                          "./downloads")
 else:
     # Put your ppe vars here if you are using local hosting
+    PLACEHOLDER = None
 
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
