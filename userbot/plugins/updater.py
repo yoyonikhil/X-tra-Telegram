@@ -13,7 +13,7 @@ IS_SELECTED_DIFFERENT_BRANCH = (
     "in this case, Updater is unable to identify the branch to be updated."
     "please check out to an official branch, and re-start the updater."
 )
-OFFICIAL_UPSTREAM_REPO = "https://github.com/Total-Noob-69/X-Tra-Telegram"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/Total-Noob-69/X-Tra-Telegram/"
 BOT_IS_UP_TO_DATE = "the userbot is up-to-date."
 NEW_BOT_UP_DATE_FOUND = (
     "new update found for {branch_name}\n"
@@ -70,7 +70,7 @@ async def updater(message):
     )
 
     if not changelog:
-        await message.edit(BOT_IS_UP_TO_DATE + "\n\nBut lets still update")
+        await message.edit("Updating...")
         await asyncio.sleep(8)
  
     message_one = NEW_BOT_UP_DATE_FOUND.format(
@@ -126,6 +126,7 @@ async def updater(message):
                 return
         else:
             await message.edit(NO_HEROKU_APP_CFGD)
+        
 
 def generate_change_log(git_repo, diff_marker):
     out_put_str = ""
