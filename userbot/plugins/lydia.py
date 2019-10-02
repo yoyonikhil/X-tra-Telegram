@@ -69,7 +69,7 @@ async def user(event):
             wait_time = 0
             for i in range(len(text_rep)):
                 wait_time = wait_time + 0.1
-            await asyncio.sleep()
+            await asyncio.sleep(wait_time)
             await event.reply(text_rep)
     except KeyError:
         return
