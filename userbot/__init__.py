@@ -165,8 +165,6 @@ if BOTLOG_CHATID is not None:
             "group. Check if you typed the Chat ID correctly.")
         quit(1)
 
-await check_botlog_chatid()
-
 # Global Variables
 COUNT_MSG = 0
 USERS = {}
