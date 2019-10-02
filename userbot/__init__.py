@@ -156,7 +156,7 @@ if bool(ENV):
             LOGS.info(
                 "Your account doesn't have rights to send messages to BOTLOG_CHATID "
                 "group. Check if you typed the Chat ID correctly.")
-           quit(1)
+            quit(1)
 
     check_botlog_chatid()
 
