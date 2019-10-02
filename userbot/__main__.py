@@ -37,7 +37,6 @@ async def botlog():
         LOGS.info(
         "You must set up the BOTLOG_CHATID variable in the config.env or environment variables, "
         "many critical features depend on it. KTHXBye.")
-        return
 
     if BOTLOG_CHATID is not None:
         entity = await bot.get_entity(BOTLOG_CHATID)
@@ -54,7 +53,6 @@ with bot:
         LOGS.info(
             "BOTLOG_CHATID environment variable isn't a "
             "valid entity. Check your environment variables/config.env file.")
-        quit(1)
 
 import glob
 path = 'userbot/plugins/*.py'
