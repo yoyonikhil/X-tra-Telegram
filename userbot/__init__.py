@@ -130,39 +130,41 @@ if bool(ENV):
     GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
     TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY",
                                          "./downloads")
+else:
+    # Put your ppe vars here if you are using local hosting
 
-    # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
-    # and giving them correct perms to work properly.
-    if not os.path.exists('bin'):
-        os.mkdir('bin')
+# Setting Up CloudMail.ru and MEGA.nz extractor binaries,
+# and giving them correct perms to work properly.
+if not os.path.exists('bin'):
+    os.mkdir('bin')
 
-    binaries = {
-        "https://raw.githubusercontent.com/yshalsager/megadown/master/megadown":
-        "bin/megadown",
-        "https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py":
-        "bin/cmrudl"
-    }
+binaries = {
+    "https://raw.githubusercontent.com/yshalsager/megadown/master/megadown":
+    "bin/megadown",
+    "https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py":
+    "bin/cmrudl"
+}
 
-    for binary, path in binaries.items():
-        downloader = SmartDL(binary, path, progress_bar=False)
-        downloader.start()
-        os.chmod(path, 0o755)
+for binary, path in binaries.items():
+    downloader = SmartDL(binary, path, progress_bar=False)
+    downloader.start()
+    os.chmod(path, 0o755)
 
-    async def check_botlog_chatid():
-        if not BOTLOG_CHATID:
-                LOGS.info(
-                "You must set up the BOTLOG_CHATID variable in the config.env or environment variables, "
-                "many critical features depend on it. KTHXBye.")
-                return
+async def check_botlog_chatid():
+    if not BOTLOG_CHATID:
+        LOGS.info(
+        "You must set up the BOTLOG_CHATID variable in the config.env or environment variables, "
+        "many critical features depend on it. KTHXBye.")
+        return
 
-        entity = await bot.get_entity(BOTLOG_CHATID)
-        if entity.default_banned_rights.send_messages:
-            LOGS.info(
-                "Your account doesn't have rights to send messages to BOTLOG_CHATID "
-                "group. Check if you typed the Chat ID correctly.")
-            quit(1)
+    entity = await bot.get_entity(BOTLOG_CHATID)
+    if entity.default_banned_rights.send_messages:
+        LOGS.info(
+            "Your account doesn't have rights to send messages to BOTLOG_CHATID "
+            "group. Check if you typed the Chat ID correctly.")
+        quit(1)
 
-    check_botlog_chatid()
+check_botlog_chatid()
 
 # Global Variables
 COUNT_MSG = 0
