@@ -3,7 +3,7 @@ import os
 import sys
 
 
-@command(pattern="^.restart", outgoing=True))
+@command(pattern="^.restart", outgoing=True)
 async def _(event):
     if event.fwd_from:
         return
@@ -12,7 +12,7 @@ async def _(event):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-@command(pattern="^.shutdown", outgoing=True))
+@command(pattern="^.shutdown", outgoing=True)
 async def _(event):
     if event.fwd_from:
         return
