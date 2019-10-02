@@ -65,8 +65,11 @@ async def user(event):
         session_id = SESSION_ID[str(event.chat_id) + " " + str(event.from_id)]
         msg = event.text
         async with event.client.action(event.chat_id, "typing"):
-            await asyncio.sleep(1)
             text_rep = session.think_thought((session_id, msg))
+            wait_time = 0
+            for i in range(len(text_rep)):
+                wait_time = wait_time + 0.1
+            await asyncio.sleep()
             await event.reply(text_rep)
     except KeyError:
         return
