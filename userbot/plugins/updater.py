@@ -39,9 +39,8 @@ async def updater(message):
         repo = git.Repo()
     except git.exc.InvalidGitRepositoryError as e:
         repo = git.Repo.init()
-        with suppress(Exception):
-            origin = repo.create_remote(REPO_REMOTE_NAME, OFFICIAL_UPSTREAM_REPO)
-            origin.fetch()
+        origin = repo.create_remote(REPO_REMOTE_NAME, OFFICIAL_UPSTREAM_REPO)
+        origin.fetch()
         repo.create_head(IFFUCI_ACTIVE_BRANCH_NAME, origin.refs.master)
         repo.heads.master.checkout(True)
 
@@ -126,6 +125,8 @@ async def updater(message):
                 return
         else:
             await message.edit(NO_HEROKU_APP_CFGD)
+    else:
+        await message.edit("No heroku api key found in HEROKU_API_KEY var")
         
 
 def generate_change_log(git_repo, diff_marker):
@@ -136,5 +137,5 @@ def generate_change_log(git_repo, diff_marker):
     return out_put_str
 
 async def restart(bot, message):
-    await bot.restart()
     await message.edit("restarted! do `.alive` to check if I am online?") 
+    await bot.restart()
