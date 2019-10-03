@@ -13,7 +13,7 @@ IS_SELECTED_DIFFERENT_BRANCH = (
     "in this case, Updater is unable to identify the branch to be updated."
     "please check out to an official branch, and re-start the updater."
 )
-OFFICIAL_UPSTREAM_REPO = "https://github.com/Total-Noob-69/X-Tra-Telegram/"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/SnapDragon7410/X-Tra-Telegram/"
 BOT_IS_UP_TO_DATE = "the userbot is up-to-date."
 NEW_BOT_UP_DATE_FOUND = (
     "new update found for {branch_name}\n"
@@ -119,7 +119,7 @@ async def updater(message):
                     remote = repo.create_remote("heroku", heroku_git_url)
                 asyncio.get_event_loop().create_task(remote.push(refspec=HEROKU_GIT_REF_SPEC))
                 await message.edit(RESTARTING_APP)
-                asyncio.get_event_loop().create_task(restart(bot, message))
+                asyncio.get_event_loop().run_until_complete(asyncio.wait(asyncio.ensure_future(restart(bot, message))))
             else:
                 await message.edit("Please create the var HEROKU_APP_NAME as the key and the name of your bot in heroku as your value.")
                 return
