@@ -60,8 +60,7 @@ def command(**args):
             try:
                 LOAD_PLUG[file_test].append(func)
             except:
-                LOAD_PLUG.update({file_test: []})
-                LOAD_PLUG[file_test].append(func)
+                LOAD_PLUG.update({file_test: [func]})
             return func
 
         return decorator
@@ -115,6 +114,8 @@ def admin_cmd(pattern=None, **args):
             args["pattern"] = re.compile(pattern)
         else:
             args["pattern"] = re.compile("\." + pattern)
+            cmd = "." + pattern
+            CMD_LIST.update({cmd: cmd})
 
     args["outgoing"] = True
     # should this command be available for other users?
@@ -169,6 +170,19 @@ def register(**args):
 
     if "disable_edited" in args:
         del args['disable_edited']
+    
+    reg = re.compile('(?:.)(.*)')
+        if not pattern == None:
+            try:
+                cmd = re.search(reg, pattern)
+                try:
+                    cmd = cmd.group(1).replace("$", "")
+                except:
+                    pass
+
+                CMD_LIST.update({f"{cmd}": f"{cmd}"})
+            except:
+                pass
 
     def decorator(func):
         if not disable_edited:
