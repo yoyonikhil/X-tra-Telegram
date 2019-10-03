@@ -79,7 +79,7 @@ def load_module(shortname):
     mod.tgbot = bot.tgbot
     mod.Var = Var
     mod.command = command
-    mod.log = logging.basicConfig(level=logging.WARNING)
+    mod.logger = logging.getLogger(shortname)
     # support for uniborg
     sys.modules["uniborg.util"] = userbot.utils
     mod.Config = Config
