@@ -172,17 +172,17 @@ def register(**args):
         del args['disable_edited']
     
     reg = re.compile('(?:.)(.*)')
-        if not pattern == None:
+    if not pattern == None:
+        try:
+            cmd = re.search(reg, pattern)
             try:
-                cmd = re.search(reg, pattern)
-                try:
-                    cmd = cmd.group(1).replace("$", "")
-                except:
-                    pass
-
-                CMD_LIST.update({f"{cmd}": f"{cmd}"})
+                cmd = cmd.group(1).replace("$", "")
             except:
                 pass
+
+            CMD_LIST.update({f"{cmd}": f"{cmd}"})
+        except:
+            pass
 
     def decorator(func):
         if not disable_edited:
