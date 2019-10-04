@@ -31,7 +31,7 @@ def command(**args):
         except:
             pass
 
-        reg = re.compile('(?:.)(.*)')
+        reg = re.compile('(.*)')
         if not pattern == None:
             try:
                 cmd = re.search(reg, pattern)
@@ -119,7 +119,7 @@ def admin_cmd(pattern=None, **args):
         else:
             args["pattern"] = re.compile("\." + pattern)
             cmd = "." + pattern
-            CMD_LIST.update({f"cmd": f"cmd"})
+            CMD_LIST.update({f"{cmd}": f"{cmd}"})
 
     args["outgoing"] = True
     # should this command be available for other users?
@@ -175,7 +175,7 @@ def register(**args):
     if "disable_edited" in args:
         del args['disable_edited']
     
-    reg = re.compile('(?:\^|\\)(.*)')
+    reg = re.compile('(.*)')
     if not pattern == None:
         try:
             cmd = re.search(reg, pattern)
