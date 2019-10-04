@@ -34,7 +34,7 @@ async def download(event):
 	reply_message = await event.get_reply_message()
 	try:
 		c_time = time.time()
-    print("Downloading to TEMP directory")
+		print("Downloading to TEMP directory")
 		downloaded_file_name = await bot.download_media(
 			reply_message.media,
 			GIT_TEMP_DIR
@@ -75,8 +75,8 @@ async def git_commit(file_name,mone):
 			repo.create_file(file_name, "Uploaded New Plugin", commit_data, branch="master")
 			print("Committed File")
 			ccess = Var.GIT_REPO_NAME
-      ccess = ccess.strip()
-	    await mone.edit(f"`Commited On Your Github Repo`\n\n[Your STDPLUGINS](https://github.com/{ccess}/tree/master/stdplugins/)")
+			ccess = ccess.strip()
+			await mone.edit(f"`Commited On Your Github Repo`\n\n[Your STDPLUGINS](https://github.com/{ccess}/tree/master/stdplugins/)")
 		except:
 			print("Cannot Create Plugin")
 			await mone.edit("Cannot Upload Plugin")
