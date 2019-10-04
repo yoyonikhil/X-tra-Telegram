@@ -36,7 +36,7 @@ def command(**args):
             try:
                 cmd = re.search(reg, pattern)
                 try:
-                    cmd = cmd.group(1).replace("$", "")
+                    cmd = cmd.group(1).replace("$", "").replace("\", "").replace("^", "")
                 except:
                     pass
 
@@ -180,7 +180,7 @@ def register(**args):
         try:
             cmd = re.search(reg, pattern)
             try:
-                cmd = cmd.group(1).replace("$", "")
+                cmd = cmd.group(1).replace("$", "").replace("\", "").replace("^", "")
             except:
                 pass
 
