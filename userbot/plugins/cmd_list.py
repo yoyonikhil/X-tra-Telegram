@@ -9,7 +9,7 @@ async def cmd_list(event):
             for iter_list in CMD_LIST[i]:
                 string += "    ℹ️ `" + str(iter_list) + "`"
                 string += "\n"
-            string += "\n\n"
+            string += "\n"
         if len(string) > 4095:
             with io.BytesIO(str.encode(string)) as out_file:
                 out_file.name = "cmd.txt"
