@@ -195,9 +195,7 @@ def register(**args):
         try:
             LOAD_PLUG[file_test].append(func)
         except Exception as e:
-            print(str(e))
-            LOAD_PLUG.update({file_test: []})
-            LOAD_PLUG[file_test].append(func)
+            LOAD_PLUG.update({file_test: [func]})
 
         return func
 
