@@ -32,7 +32,7 @@ else:
     print("Starting Userbot")
     bot.loop.run_until_complete(add_bot(Var.TG_BOT_USER_NAME_BF_HER))
     print("Startup Completed")
-    bot.me = await bot.get_me() 
+    bot.me = bot.get_me() 
     bot.uid = telethon.utils.get_peer_id(bot.me)
     
 
