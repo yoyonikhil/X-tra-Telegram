@@ -73,9 +73,11 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             reply_pop_up_alert = "{} is useless".format(plugin_name)
         else:
             reply_pop_up_alert = help_string
-        reply_pop_up_alert += "\n\n Use .unload {} to remove this plugin\n\
+        reply_pop_up_alert += "\n Use .unload {} to remove this plugin\n\
             © Userbot".format(plugin_name)
-        if len(reply_pop_up_alert) > 1000:
+        try:
+            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+        except:
             with io.BytesIO(str.encode(reply_pop_up_alert)) as out_file:
                 out_file.name = "{}.txt".format(plugin_name)
                 await bot.send_file(
@@ -85,8 +87,6 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                     allow_cache=False,
                     caption=plugin_name
                 )
-        else:
-            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
 
 def paginate_help(page_number, loaded_plugins, prefix):
