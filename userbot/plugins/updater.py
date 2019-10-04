@@ -4,6 +4,7 @@ Syntax: .update"""
 import git
 from contextlib import suppress
 import os
+import sys
 import asyncio
 
 # -- Constants -- #
