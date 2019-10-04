@@ -139,7 +139,7 @@ def generate_change_log(git_repo, diff_marker):
 async def deploy_start(bot, message, refspec, remote):
     await message.edit(RESTARTING_APP)
     await message.edit("restarted! do `.alive` to check if I am online?")
-    await remote.push(refspec=refspec)
+    remote.push(refspec=refspec)
     await bot.disconnect()
     os.execl(sys.executable, sys.executable, *sys.argv)
 
