@@ -49,6 +49,10 @@ def command(**args):
             # Mutually exclusive with outgoing (can only set one of either).
             args["incoming"] = True
         del allow_sudo
+        try:
+            del args["allow_sudo"]
+        except:
+            pass
 
         if "allow_edited_updates" in args:
             del args['allow_edited_updates']
