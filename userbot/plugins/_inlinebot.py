@@ -22,6 +22,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 buttons=buttons,
                 link_preview=False
             )
+        await event.answer([result] if result else None)
     @tgbot.on(events.callbackquery.CallbackQuery(  # pylint:disable=E0602
         data=re.compile(b"helpme_next\((.+?)\)")
     ))
