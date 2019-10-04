@@ -5,8 +5,8 @@ async def cmd_list(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         string = ""
         for i in CMD_LIST:
-            string += i
-            for iter_list in i:
+            string += i + "\n"
+            for iter_list in CMD_LIST[i]:
                 string += "    ℹ️ `" + str(iter_list) + "`"
                 string += "\n"
             string += "\n\n"
