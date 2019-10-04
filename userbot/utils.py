@@ -7,9 +7,9 @@ from userbot import LOAD_PLUG
 from userbot import CMD_LIST
 import re
 import logging
+import inspect
 
 def command(**args):
-    import inspect
     stack = inspect.stack()
     previous_stack_frame = stack[1]
     file_test = Path(previous_stack_frame.filename)
@@ -40,7 +40,10 @@ def command(**args):
                 except:
                     pass
 
-                CMD_LIST.update({f"{cmd}": f"{cmd}"})
+                try:
+                    CMD_LIST[file_test].append(cmd)
+                except:
+                    CMD_LIST.update({file_test: [cmd]})
             except:
                 pass
 
@@ -109,6 +112,10 @@ def remove_plugin(shortname):
         raise ValueError
 
 def admin_cmd(pattern=None, **args):
+    stack = inspect.stack()
+    previous_stack_frame = stack[1]
+    file_test = Path(previous_stack_frame.filename)
+    file_test = file_test.stem.replace(".py", "")
     allow_sudo = args.get("allow_sudo", False)
 
     # get the pattern from the decorator
@@ -119,7 +126,10 @@ def admin_cmd(pattern=None, **args):
         else:
             args["pattern"] = re.compile("\." + pattern)
             cmd = "." + pattern
-            CMD_LIST.update({f"{cmd}": f"{cmd}"})
+            try:
+                CMD_LIST[file_test].append(cmd)
+            except:
+                CMD_LIST.update({file_test: [cmd]})
 
     args["outgoing"] = True
     # should this command be available for other users?
@@ -161,7 +171,6 @@ import datetime
 
 def register(**args):
     """ Register a new event. """
-    import inspect
     stack = inspect.stack()
     previous_stack_frame = stack[1]
     file_test = Path(previous_stack_frame.filename)
@@ -184,7 +193,10 @@ def register(**args):
             except:
                 pass
 
-            CMD_LIST.update({f"{cmd}": f"{cmd}"})
+            try:
+                CMD_LIST[file_test].append(cmd)
+            except:
+                CMD_LIST.update({file_test: [cmd]})
         except:
             pass
 
