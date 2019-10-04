@@ -75,7 +75,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             reply_pop_up_alert = help_string
         reply_pop_up_alert += "\n\n Use .unload {} to remove this plugin\n\
             © Userbot".format(plugin_name)
-        if len(reply_pop_up_alert) > 4095:
+        if len(reply_pop_up_alert) > 1000:
             with io.BytesIO(str.encode(reply_pop_up_alert)) as out_file:
                 out_file.name = "{}.txt".format(plugin_name)
                 await bot.send_file(
