@@ -3,10 +3,13 @@ from userbot import CMD_LIST
 @command(pattern="^.get_cmd")
 async def cmd_list(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
-        string = "Ignore \ and ^:\n\n"
+        string = ""
         for i in CMD_LIST:
-            string += "ℹ️ `" + str(i)
-            string += "`\n"
+            string += i
+            for iter_list in i:
+                string += "    ℹ️ `" + str(iter_list) + "`"
+                string += "\n"
+            string += "\n\n"
         if len(string) > 4095:
             with io.BytesIO(str.encode(string)) as out_file:
                 out_file.name = "cmd.txt"
