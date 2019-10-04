@@ -5,6 +5,7 @@ import random
 import re
 from telethon import events, errors, custom
 from userbot import CMD_LIST
+import io
 
 if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
     @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
@@ -74,7 +75,18 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             reply_pop_up_alert = help_string
         reply_pop_up_alert += "\n\n Use .unload {} to remove this plugin\n\
             © Userbot".format(plugin_name)
-        await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+        if len(reply_pop_up_alert) > 4095:
+            with io.BytesIO(str.encode(reply_pop_up_alert)) as out_file:
+                out_file.name = "{}.txt".format(plugin_name)
+                await bot.send_file(
+                    event.chat_id,
+                    out_file,
+                    force_document=True,
+                    allow_cache=False,
+                    caption=plugin_name
+                )
+        else:
+            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
 
 def paginate_help(page_number, loaded_plugins, prefix):
