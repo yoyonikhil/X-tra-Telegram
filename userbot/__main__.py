@@ -9,6 +9,7 @@ from userbot.utils import load_module
 from userbot import LOAD_PLUG, BOTLOG_CHATID, LOGS
 from pathlib import Path
 import asyncio
+import telethon.utils
 
 async def add_bot(bot_token):
     await bot.start(bot_token)
@@ -31,6 +32,9 @@ else:
     print("Starting Userbot")
     bot.loop.run_until_complete(add_bot(Var.TG_BOT_USER_NAME_BF_HER))
     print("Startup Completed")
+    bot.me = await bot.get_me() 
+    bot.uid = telethon.utils.get_peer_id(bot.me)
+    
 
 import glob
 path = 'userbot/plugins/*.py'
