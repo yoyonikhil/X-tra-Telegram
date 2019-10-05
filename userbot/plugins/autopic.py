@@ -19,7 +19,7 @@ async def autopic(event):
     shutil.copy(downloaded_file_name, photo)
     while True:
         im = Image.open(photo)
-        file_test = im.rotate(-5, expand=True).save(photo, "PNG")
+        file_test = im.rotate(-5, expand=False).save(photo, "PNG")
         current_time = datetime.now().strftime("⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡ \n ⚡USERBOT TIMEZONE⚡ \n  Time: %H:%M:%S \n  Date: %d.%m.%y \n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡")
         photo_complete = "userbot/photo_complete.png"
         shutil.copy(photo, photo_complete)
