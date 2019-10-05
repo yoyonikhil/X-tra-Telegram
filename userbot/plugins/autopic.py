@@ -16,24 +16,23 @@ async def autopic(event):
     photo = "userbot/photo_pfp.png"
     while not downloader.isFinished():
         place_holder = None
-    shutil.copy(downloaded_file_name, photo)
+    counter = -5
     while True:
+        shutil.copy(downloaded_file_name, photo)
         im = Image.open(photo)
-        file_test = im.rotate(-5, expand=False).save(photo, "PNG")
+        file_test = im.rotate(counter, expand=False).save(photo, "PNG")
         current_time = datetime.now().strftime("⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡ \n ⚡USERBOT TIMEZONE⚡ \n  Time: %H:%M:%S \n  Date: %d.%m.%y \n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡")
-        photo_complete = "userbot/photo_complete.png"
-        shutil.copy(photo, photo_complete)
-        img = Image.open(photo_complete)
+        img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 30)
         drawn_text.text((50, 250), current_time, font=fnt, fill=(255, 255, 255))
-        img.save(photo_complete)
+        img.save(photo)
         file = await bot.upload_file(photo_complete)  # pylint:disable=E0602
         try:
             await bot(functions.photos.UploadProfilePhotoRequest(  # pylint:disable=E0602
                 file
             ))
-            os.remove(photo_complete)
+            os.remove(photo)
             await asyncio.sleep(60)
         except:
             return
