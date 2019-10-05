@@ -16,7 +16,7 @@ async def autopic(event):
     photo = "userbot/photo_pfp.png"
     while not downloader.isFinished():
         place_holder = None
-    shutil.copy(download_file_name, photo)
+    shutil.copy(downloaded_file_name, photo)
     while True:
         im = Image.open(photo)
         file_test = im.rotate(-1, expand=True).save(photo, "PNG")
