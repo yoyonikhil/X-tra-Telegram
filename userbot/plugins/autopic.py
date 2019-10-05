@@ -4,6 +4,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.tl import functions
 import asyncio
+import shutil
 
 FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
 
@@ -12,22 +13,26 @@ async def autopic(event):
     downloaded_file_name = "userbot/original_pic.png"
     downloader = SmartDL(Var.DOWNLOAD_PFP_URL_CLOCK, downloaded_file_name, progress_bar=False)
     downloader.start(blocking=False)
+    photo = "userbot/photo_pfp.png"
     while not downloader.isFinished():
         place_holder = None
-    im = Image.open(downloaded_file_name)
-    photo = "userbot/photo_pfp.png"
-    file_test = im.rotate(-1, expand=True).save(photo, "PNG")
+    shutil.copy(download_file_name, photo)
     while True:
+        im = Image.open(photo)
+        file_test = im.rotate(-1, expand=True).save(photo, "PNG")
         current_time = datetime.now().strftime("⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡ \n ⚡USERBOT TIMEZONE⚡ \n  Time: %H:%M:%S \n  Date: %d.%m.%y \n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡")
-        drawn_text = ImageDraw.Draw(photo)
+        photo_complete = "userbot/photo_complete.png"
+        shutil.copy(photo, photo_complete)
+        img = Image.open(photo_complete)
+        drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 30)
-        drawn_text.text((10, 10), current_time, font=fnt, fill=(255, 255, 255)).save("userbot/photo_complete.png", "PNG")
-        file = await bot.upload_file("userbot/photo_complete.png")  # pylint:disable=E0602
+        drawn_text.text((10, 10), current_time, font=fnt, fill=(255, 255, 255)).save(photo_complete, "PNG")
+        file = await bot.upload_file(photo_complete)  # pylint:disable=E0602
         try:
             await bot(functions.photos.UploadProfilePhotoRequest(  # pylint:disable=E0602
                 file
             ))
-            os.remove("userbot/photo_complete.png")
+            os.remove(photo_complete)
             await asyncio.sleep(60)
         except:
             return
