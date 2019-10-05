@@ -19,7 +19,7 @@ async def autopic(event):
     file_test = im.rotate(-1, expand=True).save(photo, "PNG")
     while True:
         current_time = datetime.now().strftime("⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡ \n ⚡USERBOT TIMEZONE⚡ \n  Time: %H:%M:%S \n  Date: %d.%m.%y \n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡")
-        drawn_text = ImageDraw.Draw(im)
+        drawn_text = ImageDraw.Draw(photo)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 30)
         drawn_text.text((10, 10), current_time, font=fnt, fill=(255, 255, 255)).save("userbot/photo_complete.png", "PNG")
         file = await bot.upload_file("userbot/photo_complete.png")  # pylint:disable=E0602
