@@ -2,7 +2,7 @@ from telethon.events import NewMessage
 from bwb.bwb import bwb
 import asyncio
 
-bwb = bwb.bwb(234480941)
+bwb = bwb(bot.uid)
 wrap_users = {
     't': 79316791,   # Tanner
     'j': 172033414,  # Jason
