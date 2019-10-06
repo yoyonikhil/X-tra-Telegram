@@ -1,8 +1,8 @@
 from telethon.events import NewMessage
-from bwb.bwb import bwb
+from bwb import bwb
 import asyncio
 
-bwb = bwb(bot.uid)
+bwb = bwb.bwb(bot.uid)
 wrap_users = {
     't': 79316791,   # Tanner
     'j': 172033414,  # Jason
@@ -18,7 +18,7 @@ async def init(event):
     await event.respond('000000init ' + bwb.init())
 
 
-@command(outgoing=True, pattern=r'!!+(e(?:enc)?)?w(?:rap)? (\S+) ([\s\S]+)')
+@ccommand(outgoing=True, pattern=r'!!+(e(?:enc)?)?w(?:rap)? (\S+) ([\s\S]+)')
 async def wrap(event):
     enc = event.pattern_match.group(1) is not None
     message = event.pattern_match.group(3)
@@ -32,7 +32,7 @@ async def wrap(event):
     await event.respond(bwb.wrap(message, target=u, enc=enc), reply_to=event.reply_to_msg_id)
 
 
-@bot.on(NewMessage())
+@client.on(NewMessage())
 async def hs(event):
     text = bwb.parse(event.raw_text)
     handshake_auth = False
