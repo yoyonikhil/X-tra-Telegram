@@ -32,7 +32,7 @@ async def wrap(event):
     await event.respond(bwb.wrap(message, target=u, enc=enc), reply_to=event.reply_to_msg_id)
 
 
-@bot.on(events.NewMessage())
+@bot.on(NewMessage())
 async def hs(event):
     text = bwb.parse(event.raw_text)
     handshake_auth = False
