@@ -10,8 +10,8 @@
     "productivity"
   ],
   "repository": "https://github.com/Total-Noob-69/X-tra-Telegram",
-  "website": "#TODO",
-  "success_url": "#TODO",
+  "website": "https://t.me/s/X_tra_Telegram",
+  "success_url": "https://t.me/X_tra_Telegram/5",
   "env": {
     "ENV": {
       "description": "Setting this to ANYTHING will enable heroku.",
@@ -33,6 +33,61 @@
     "STRING_SESSION": {
       "description": "Get this value by running python3 telesetup.py locally",
       "value": ""
+    },
+    "GITHUB_ACCESS_TOKEN": {
+      "description": "Your Github Access Token for gitcommit plugin.",
+      "value": "",
+      "required": false
+    },
+     "CHROME_BIN": {
+      "description": "For Carbon.py. Leave as it is. ",
+      "value": "/app/.apt/usr/bin/google-chrome",
+      "required": false
+    },
+    "CHROME_DRIVER": {
+      "description": "For Carbon.py. Leave as it is. ",
+      "value": "/app/.chromedriver/bin/chromedriver",
+      "required": false
+    },
+    "GIT_REPO_NAME": {
+      "description": "Your repo name Example: Total-Noob-69/X-Tra-Telegram, but GITHUB_ACCESS_TOKEN must be setup first.",
+      "value": "",
+      "required": false
+    },
+    "LYDIA_API_KEY": {
+      "description": "Needed for Lydia AI. Follow https://telegra.ph/Lydia-09-05 to get your API.",
+      "value": "",
+      "required": false
+    },
+    "HEROKU_API_KEY": {
+      "description": "Go to https://dashboard.heroku.com/account, scroll down and press Reveal API",
+      "value": "",
+      "required": false
+    },
+    "HEROKU_APP_NAME": {
+      "description": "The Value of App Name you filled in right on top.",
+      "value": "",
+      "required": false
+    },
+    "TG_BOT_TOKEN_BF_HER": {
+      "description": "Needed for inline buttons maker. Make a bot at [BotFather](http://telegram.dog/BotFather) and get the token of your bot",
+      "value": "",
+      "required": false
+    },
+    "TG_BOT_USER_NAME_BF_HER": {
+      "description": "Needed for inline buttons maker. Make a bot at [BotFather](http://telegram.dog/BotFather) and get the username of your bot",
+      "value": "",
+      "required": false
+    },
+    "DOWNLOAD_PFP_URL_CLOCK": {
+      "description": "Needed for autopic module. A url that is a preview link of your Profile Pic",
+      "value": "",
+      "required": false
+    },
+    "TZ": {
+      "description": "Required for Correct Time on autopic",
+      "value": "",
+      "required": false
     }
   },
   "addons": [{
