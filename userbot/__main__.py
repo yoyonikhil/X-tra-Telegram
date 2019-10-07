@@ -16,13 +16,16 @@ async def add_bot(bot_token):
     bot.me = await bot.get_me() 
     bot.uid = telethon.utils.get_peer_id(bot.me)
 
-
+async def normal_bot():
+    await bot.start()
+    bot.me = await bot.get_me() 
+    bot.uid = telethon.utils.get_peer_id(bot.me)
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()
 else:
     bot.tgbot = None
-    if Var.TG_BOT_USER_NAME_BF_HER is not None:
+    if Var.TG_BOT_USER_NAME_BF_HER is not None or Var.TG_BOT_USER_NAME_BF_HER is not "":
         print("Initiating Inline Bot")
         # ForTheGreatrerGood of beautification
         bot.tgbot = TelegramClient(
@@ -35,7 +38,7 @@ else:
         bot.loop.run_until_complete(add_bot(Var.TG_BOT_USER_NAME_BF_HER))
         print("Startup Completed")
     else:
-        bot.start()
+        bot.loop.run_until_complete(normal_bot())
     
 
 import glob
