@@ -61,22 +61,18 @@
     },
     "HEROKU_API_KEY": {
       "description": "Go to https://dashboard.heroku.com/account, scroll down and press Reveal API",
-      "value": "",
       "required": false
     },
     "HEROKU_APP_NAME": {
       "description": "The Value of App Name you filled in right on top.",
-      "value": "",
       "required": false
     },
     "TG_BOT_TOKEN_BF_HER": {
       "description": "Needed for inline buttons maker. Make a bot at [BotFather](http://telegram.dog/BotFather) and get the token of your bot",
-      "value": "",
       "required": false
     },
     "TG_BOT_USER_NAME_BF_HER": {
       "description": "Needed for inline buttons maker. Make a bot at [BotFather](http://telegram.dog/BotFather) and get the username of your bot",
-      "value": "",
       "required": false
     },
     "DOWNLOAD_PFP_URL_CLOCK": {
@@ -87,6 +83,18 @@
     "TZ": {
       "description": "Required for Correct Time on autopic",
       "value": "",
+      "required": false
+    },
+    "G_DRIVE_CLIENT_ID": {
+      "description": "Get your credentials from https://da.gd/so63O",
+      "required": false
+    },
+    "G_DRIVE_CLIENT_SECRET": {
+      "description": "Get your credentials from https://da.gd/so63O",
+      "required": false
+    },
+    "PRIVATE_GROUP_ID": {
+      "description": "Create a private group and do `.exec print(event.chat_id)` in it and then that is your value. Remember that first create the bot.",
       "required": false
     }
   },
