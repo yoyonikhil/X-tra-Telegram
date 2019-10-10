@@ -96,6 +96,10 @@
     "PRIVATE_GROUP_ID": {
       "description": "Create a private group and do `.exec print(event.chat_id)` in it and then that is your value. Remember that first create the bot.",
       "required": false
+    },
+    "AUTH_TOKEN_DATA": {
+      "description": "Your GDrive Auth Token.",
+      "required": false
     }
   },
   "addons": [{
